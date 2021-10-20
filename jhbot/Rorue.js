@@ -75,10 +75,10 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
       let data = msg.replace(cmd + " ", "");
   
       
-      let result = chatutils.getNaverWeather(data);
+      let result = chatutils.getGoogleWeather(data);
       if (result == null) replier.reply("날씨 정보 불러오기 실패");
-      else replier.reply(data + "의 날씨 정보입니다\n\n" + result.shift() + "\u200b".repeat(500) + "\n\n" + result.join("\n\n"));
-      
+      //else replier.reply(data + "의 날씨 정보입니다\n\n" + result.shift() + "\u200b".repeat(500) + "\n\n" + result.join("\n\n"));
+      else replier.reply(result);
     }
 
   }

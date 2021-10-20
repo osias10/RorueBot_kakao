@@ -2,7 +2,7 @@ function printlostark(arg){
 
     var data0 = org.jsoup.Jsoup.connect("https://lostark.game.onstove.com/Profile/Character/" + arg).get();
 
-    if (data0.select("div.profile-ingame")){
+    if (data0.select("div.level-info").text() == ""){
         return "캐릭터 정보가 없습니다";
     }
     var data = data0.select("div.profile-ingame");

@@ -72,10 +72,46 @@ function getNaverWeather(loc) {
     }
 }
 
+function getGoogleWeather(weather){
+    
+
+    if (isNaN(weather))  {
+
+        try {
+
+            let url = org.jsoup.Jsoup.connect("https://www.google.com/search?q=" + weather + " 날씨").get();
+
+            let resultDC = url.select("#wob_dc").text(); //상태?
+
+            let resultPP = url.select("#wob_pp").text(); //강수확률
+
+            let resultTM = url.select("#wob_tm").text(); //온도
+
+            let resultWS = url.select("#wob_ws").text(); //풍속
+
+            let resultHM = url.select("#wob_hm").text(); //습도
+
+            if(resultDC=="")  {
+                return("지금 현재 " + weather + "의 날씨를 불러올 수 없습니다.");
+            
+            }
+            return("지금 현재 "+weather+"의 날씨는 \""+resultDC + "\"입니다. 온도는 "+resultTM+"°C 입니다.\n\n강수확률: " + resultPP + "\n풍속: " + resultWS + "\n습도: " + resultHM);
+        }catch(e)  {
+            return("불러올 수 없는 지역이거나 지원되지 않는 지역입니다.");
+            
+        }
+    } else {
+        return("지역을 잘못 나타냈어요(EX.!날씨 \"조회할 지역\")");
+    
+    }
+    
+
+}
+
 
 
 module.exports.papagoTranslate= papagoTranslate;
 module.exports.papagoDetectLanguage = papagoDetectLanguage;
 module.exports.getNaverWeather = getNaverWeather;
-    
+module.exports.getGoogleWeather = getGoogleWeather;
     
