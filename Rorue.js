@@ -9,6 +9,7 @@ const scriptName = "Rorue";
  * (string) packageName
  */
 const chatutils = require('chatutils.js');
+const helps = require('helps.js');
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
   
@@ -35,6 +36,10 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
     */
     if (command =='안녕'){
       replier.reply("안녕하세요");
+    }
+    else if (command == 'help'){
+      let result = helps.help();
+      replier.reply(result);
     }
     else if (command.startsWith('검색')){
       let cmd= msg.split(" ")[0];
