@@ -10,6 +10,8 @@ const scriptName = "Rorue";
  */
 const chatutils = require('chatutils.js');
 const helps = require('helps.js');
+const lostark = require('game/lostark.js');
+
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
   
@@ -54,12 +56,29 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
       let dice = Math.floor(Math.random() * 6) +1;
       replier.reply("주사위 결과 : " + dice);
     }
-    else if (command .startsWith('번역')){
+    else if (command.startsWith('번역')){
       let cmd= msg.split(" ")[0];
       let data = msg.replace(cmd+" ","");
       //let language = chatutils.papagoDetectLanguage(data);
       let result = chatutils.papagoTranslate("en", "ko", data);
       replier.reply(result);
+    }
+    else if (command.startsWith('로아')){
+      let cmd= msg.split(" ")[0];
+      let data = msg.replace(cmd+" ","");
+      let result = lostark.printlostark(data);
+      
+      replier.reply(result);
+    }
+    else if (command.startsWith('날씨')){
+      let cmd = msg.split(" ")[0];
+      let data = msg.replace(cmd + " ", "");
+  
+      
+      let result = chatutils.getNaverWeather(data);
+      if (result == null) replier.reply("날씨 정보 불러오기 실패");
+      else replier.reply(data + "의 날씨 정보입니다\n\n" + result.shift() + "\u200b".repeat(500) + "\n\n" + result.join("\n\n"));
+      
     }
 
   }
