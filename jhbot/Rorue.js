@@ -86,7 +86,13 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
       let data = msg.replace(cmd + " ", "");
 
       let result = lolutils.summonerInfo(data);
-      replier.reply(result);
+      if (result != undefined){
+        replier.reply(result);
+      }
+      else{
+        replier.reply("없는 소환사 입니다");
+      }
+      
     }
     //명령어 끝
   }
