@@ -20,7 +20,7 @@ function summonerInfo(nickname){
             let rank = printRank(rankData);
             let profile = "롤 프로필\n\n"+nickname+"\nLevel: "+data.summonerLevel;
             //return("롤 프로필\n\n"+nickname+"\nLevel: "+data.summonerLevel);
-            result = result+"\n"+rank;
+            result = profile+"\n"+rank;
         }
         else{
             result = "없는 소환사 정보입니다.";
