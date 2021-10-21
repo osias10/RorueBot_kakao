@@ -48,14 +48,14 @@ function printRank(summonerRank){
     let result;
     let soloRank = summonerRank.filter(obj => obj['queueType'] === 'RANKED_SOLO_5x5');
     if (soloRank !=0){
-        result = "[솔로랭크]  "+soloRank[0].tier+" "+ soloRank[0].rank+" " + soloRank[0].leaguePoints;
+        result = "[솔로랭크]  "+soloRank[0].tier+" "+ soloRank[0].rank+" " + soloRank[0].leaguePoints+'p';
     }
     else{
         result = "[솔로랭크]  "+"UnRanked";
     }
     let flexRank = summonerRank.filter(obj => obj['queueType'] === 'RANKED_FLEX_SR');
     if (soloRank !=0){
-        result += "\n[자유랭크]  "+flexRank[0].tier+" "+ flexRank[0].rank+" " + flexRank[0].leaguePoints;
+        result += "\n[자유랭크]  "+flexRank[0].tier+" "+ flexRank[0].rank+" " + flexRank[0].leaguePoints+'p';
     }
     else{
         result += "\n[자유랭크]  "+"UnRanked";
