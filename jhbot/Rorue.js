@@ -39,7 +39,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
     if (command =='안녕'){
       replier.reply("안녕하세요");
     }
-    else if (command == 'help'){
+    else if (command == 'help' || command == '도움말'){
       let result = helps.help();
       replier.reply(result);
     }
