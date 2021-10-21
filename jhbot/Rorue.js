@@ -11,6 +11,7 @@ const scriptName = "Rorue";
 const chatutils = require('chatutils.js');
 const helps = require('helps.js');
 const lostark = require('game/lostark.js');
+const lolutils = require('game/lolutils.js');
 
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
@@ -80,7 +81,14 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
       //else replier.reply(data + "의 날씨 정보입니다\n\n" + result.shift() + "\u200b".repeat(500) + "\n\n" + result.join("\n\n"));
       else replier.reply(result);
     }
+    else if (command.startsWith('롤프로필')){
+      let cmd = msg.split(" ")[0];
+      let data = msg.replace(cmd + " ", "");
 
+      let result = lolutils.summonerInfo(data);
+      replier.reply(result);
+    }
+    //명령어 끝
   }
   else{
     return;
