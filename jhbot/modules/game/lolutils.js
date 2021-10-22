@@ -54,7 +54,7 @@ function printRank(summonerRank){
         result = "[솔로랭크]  "+"UnRanked";
     }
     let flexRank = summonerRank.filter(obj => obj['queueType'] === 'RANKED_FLEX_SR');
-    if (soloRank !=0){
+    if (flexRank !=0){
         result += "\n[자유랭크]  "+flexRank[0].tier+" "+ flexRank[0].rank+" " + flexRank[0].leaguePoints+'p';
     }
     else{
