@@ -117,10 +117,10 @@ function printTftRank(nickname){
     let result;
     let tftRank = getsummonerRankInfoTft(getSummonerInfoTft(nickname));
     if (tftRank !=0){
-        result += "\n[TFT랭크]  "+tftRank[0].tier+" "+ tftRank[0].rank+" " + tftRank[0].leaguePoints+'p'+printGameCount(tftRank);
+        result = "\n[TFT랭크]  "+tftRank[0].tier+" "+ tftRank[0].rank+" " + tftRank[0].leaguePoints+'p'+printGameCount(tftRank);
     }
     else{
-        result += "\n[TFT랭크]]  "+"UnRanked";
+        result = "\n[TFT랭크]  "+"UnRanked";
     }
     return result;
 }
