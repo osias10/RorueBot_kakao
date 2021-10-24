@@ -12,6 +12,7 @@ const chatutils = require('chatutils.js');
 const helps = require('helps.js');
 const lostark = require('game/lostark.js');
 const lolutils = require('game/lolutils.js');
+const kalinkutils = require('kalinkutils.js');
 
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
@@ -93,6 +94,10 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
         replier.reply("없는 소환사 입니다");
       }
       
+    }
+
+    else if(command == '카봇테스트'){
+      kalinkutils.kalinktest(room);
     }
     //명령어 끝
   }
