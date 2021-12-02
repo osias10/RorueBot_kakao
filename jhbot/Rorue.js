@@ -13,6 +13,7 @@ const helps = require('helps.js');
 const lostark = require('game/lostark.js');
 const lolutils = require('game/lolutils.js');
 const kalinkutils = require('kalinkutils.js');
+const connectKakao = require('utils/connectKakao.js');
 
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
@@ -94,6 +95,11 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
         replier.reply("없는 소환사 입니다");
       }
       
+    }
+    else if (command.startsWith('소켓')){
+      replier.reply("소켓테스트 시작");
+      let answer = connectKakao.socket(msg);
+      replier.reply(answer);
     }
 
     else if(command == '카봇테스트'){
