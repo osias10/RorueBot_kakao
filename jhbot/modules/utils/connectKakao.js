@@ -28,7 +28,9 @@ function socket(msg){
     
     while((line = reader.readLine())!=null){
         
-        getData += line;
+        if(line == '[*Fin*]') break;
+
+        getData += (line+'\n');
         //Log.d(('test'+ line+ String(line == '') + String(line == null) + String(line == undefined)));
 
     }
@@ -38,9 +40,9 @@ function socket(msg){
     //getData+=reader;
     
 
-    pw.close();
-    reader.close();
-    socket.close();
+    //pw.close();
+    //reader.close();
+    //socket.close();
     return getData;
     
     

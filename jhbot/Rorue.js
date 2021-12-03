@@ -98,7 +98,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
     }
     else if (command.startsWith('소켓')){
       replier.reply("소켓테스트 시작");
-      let answer = connectKakao.socket(msg);
+      let answer = connectKakao.socket(room+""+sender);
       replier.reply(answer);
     }
 
