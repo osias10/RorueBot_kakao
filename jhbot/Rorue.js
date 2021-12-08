@@ -14,7 +14,7 @@ const lostark = require('game/lostark.js');
 const lolutils = require('game/lolutils.js');
 const kalinkutils = require('kalinkutils.js');
 const connectKakao = require('utils/connectKakao.js');
-
+//connectKakao.socket2("test");
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
   
@@ -98,7 +98,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
     }
     else if (command.startsWith('소켓')){
       replier.reply("소켓테스트 시작");
-      let answer = connectKakao.socket(room+""+sender);
+      let answer = connectKakao.socket(msg);
       replier.reply(answer);
     }
 
