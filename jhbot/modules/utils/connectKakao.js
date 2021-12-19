@@ -2,10 +2,12 @@ FS = FileStream;
 let path = "/storage/emulated/0/msgbot/Bots/Rorue/modules/utils/socket.json";
 
 const sockets = JSON.parse(FS.read(path));
+
 /*
 const socket = new java.net.Socket(sockets.host,sockets.port);
 const ins = new java.io.InputStreamReader(socket.getInputStream);
 */
+
 function socket(msg){
     const socket = new java.net.Socket(sockets.host, sockets.port);
     const reader = new java.io.BufferedReader(new java.io.InputStreamReader(socket.getInputStream()));
@@ -134,12 +136,52 @@ function socket3(msg){
     });
     readerThread.setDaemon(true);
     readerThread.start();
-    return (readerThread.);
+    return (readerThread);
     
 
 //return getData;
 }
 */
+
+
+function waitForData(socket,reader, callback){
+
+    const pw = new java.io.PrintWriter(socket.getOutputStream());
+    
+    //pw.print(msg);
+    //pw.flush();
+    const readerThread = new java.lang.Thread({
+       
+        run: () => {
+            let lines = "";
+            let line=null;
+
+            while ((line = reader.readLine()) !== null && line != '[*Fin*]'){   // 받아올 때까지 기다리는 도중에
+                //Log.d(line);
+                //if(line == '[*Fin*]') break;
+                lines+=line+"\n";
+            }
+            lines=lines.slice(0,-1);
+            callback(lines);
+            //return line;
+        }
+    });
+    readerThread.setDaemon(true);
+    readerThread.start();
+
+}
+
+function sendData(sendmsg,sender,socket){
+    const pw = new java.io.PrintWriter(socket.getOutputStream());
+    pw.print(sender+" : "+sendmsg);
+    pw.flush();
+    return;
+}
+
+
+
 module.exports.socket=socket;
 module.exports.socket2=socket2;
 //module.exports.socket3=socket3;
+module.exports.waitForData=waitForData;
+module.exports.sendData=sendData;

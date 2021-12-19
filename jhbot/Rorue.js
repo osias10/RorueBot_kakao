@@ -1,4 +1,5 @@
 const scriptName = "Rorue";
+FS = FileStream;
 /**
  * (string) room
  * (string) sender
@@ -15,6 +16,20 @@ const lolutils = require('game/lolutils.js');
 const kalinkutils = require('kalinkutils.js');
 const connectKakao = require('utils/connectKakao.js');
 //connectKakao.socket2("test");
+
+
+let pathS = "/storage/emulated/0/msgbot/Bots/Rorue/modules/utils/socket.json";
+
+const socketsS = JSON.parse(FS.read(pathS));
+const socketS = new java.net.Socket(socketsS.host, socketsS.port);
+const readerS = new java.io.BufferedReader(new java.io.InputStreamReader(socketS.getInputStream()));
+
+
+
+
+setInterval(function(){
+  connectKakao.waitForData(socketS,readerS,(data)=>Api.replyRoom("주녕",data));
+},1000);
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
   
@@ -100,6 +115,10 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
       replier.reply("소켓테스트 시작");
       let answer = connectKakao.socket(msg);
       replier.reply(answer);
+    }
+    else if (command.startsWith('소')){
+      replier.reply("소켓테스트2 시작");
+      connectKakao.sendData(msg,sender,socketS);
     }
 
     else if(command == '카봇테스트'){
