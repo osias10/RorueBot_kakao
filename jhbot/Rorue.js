@@ -15,11 +15,12 @@ const lostark = require('game/lostark.js');
 const lolutils = require('game/lolutils.js');
 const kalinkutils = require('kalinkutils.js');
 const connectKakao = require('utils/connectKakao.js');
+const lollink = require('game/lollink.js');
 //connectKakao.socket2("test");
 
 
 let pathS = "/storage/emulated/0/msgbot/Bots/Rorue/modules/utils/socket.json";
-
+/*
 const socketsS = JSON.parse(FS.read(pathS));
 const socketS = new java.net.Socket(socketsS.host, socketsS.port);
 const readerS = new java.io.BufferedReader(new java.io.InputStreamReader(socketS.getInputStream()));
@@ -30,7 +31,7 @@ const readerS = new java.io.BufferedReader(new java.io.InputStreamReader(socketS
 setInterval(function(){
   connectKakao.waitForData(socketS,readerS,(data)=>Api.replyRoom("주녕",data));
 },1000);
-
+*/
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
   
   if(msg.startsWith('/')){
@@ -99,6 +100,18 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
       else replier.reply(result);
     }
     else if (command.startsWith('롤프로필')){
+      let cmd = msg.split(" ")[0];
+      let data = msg.replace(cmd + " ", "");
+
+      let result = lollink.printLolLink(room,data);
+      if (result != undefined){
+        replier.reply(result);
+      }
+      else{
+      }
+      
+    }
+    else if (command.startsWith('롤프로필2')){
       let cmd = msg.split(" ")[0];
       let data = msg.replace(cmd + " ", "");
 
