@@ -33,7 +33,8 @@ function printLolLink(room,nickname) {
                   "flexRank" : summoner.data.summonertier[1].tier,
                   "tftRank" : summoner.data.summonertier[2].tier,
                   "champions" : printmost(summoner.data.summonerChampion),
-                  "imgPath" : summoner.data.ImgURL.split('i.ibb.co/')[1]
+                  "imgPath" : summoner.data.ImgURL.split('i.ibb.co/')[1],
+                  "opggPath" : "summoner/userName="+nickname
           
                 //카카오링크 태그
           
