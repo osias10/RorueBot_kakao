@@ -17,6 +17,7 @@ const kalinkutils = require('kalinkutils.js');
 const connectKakao = require('utils/connectKakao.js');
 const lollink = require('game/lollink.js');
 //connectKakao.socket2("test");
+const openai = require('utils/openai.js');
 
 
 let pathS = "/storage/emulated/0/msgbot/Bots/Rorue/modules/utils/socket.json";
@@ -136,6 +137,12 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
 
     else if(command == '카봇테스트'){
       kalinkutils.kalinktest(room);
+    }
+    else if (command.startsWith('ai')) {
+      let cmd = msg.split(" ")[0];
+      let data = msg.replace(cmd + " ", "");
+      let result = openai.openAiChat(data);
+      replier.reply(result);
     }
     //명령어 끝
   }
