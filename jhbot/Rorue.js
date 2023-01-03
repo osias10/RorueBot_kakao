@@ -18,6 +18,7 @@ const connectKakao = require('utils/connectKakao.js');
 const lollink = require('game/lollink.js');
 //connectKakao.socket2("test");
 const openai = require('utils/openai.js');
+const komantle = require('game/komantle.js');
 
 
 let pathS = "/storage/emulated/0/msgbot/Bots/Rorue/modules/utils/socket.json";
@@ -27,12 +28,13 @@ const socketS = new java.net.Socket(socketsS.host, socketsS.port);
 const readerS = new java.io.BufferedReader(new java.io.InputStreamReader(socketS.getInputStream()));
 
 
-
-
 setInterval(function(){
   connectKakao.waitForData(socketS,readerS,(data)=>Api.replyRoom("주녕",data));
 },1000);
 */
+
+let komantleRoomList = [];
+
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
   
   if(msg.startsWith('/')){
@@ -142,6 +144,12 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
       let cmd = msg.split(" ")[0];
       let data = msg.replace(cmd + " ", "");
       let result = openai.openAiChat(data);
+      replier.reply(result);
+    }
+    else if (command.startsWith('꼬만틀')) {
+      let cmd = msg.split(" ")[0];
+      let data = msg.replace(cmd + " ", "");
+      let result = komantle.setKomantle(room,komantleRoomList,data)
       replier.reply(result);
     }
     //명령어 끝
